@@ -15,7 +15,8 @@ var all_records = [],			// All records in CSV file
 	all_milestones = [],		// All milestones in CSV file (base layers are not milestones);
                                 // includees milestones w/o a layer, "base layers", and toggleable layers
     all_layers = [],			// All layers in SVG file, includes "base layers" and toggleable layers
-	toggleable_layers = [];		// Toggle-able layers in SVG map
+	toggleable_layers = [],		// Toggle-able layers in SVG map
+	web_resources = [];			// Array-of-objects of web resources
 	
 var debugFlag = false;
 	
@@ -156,10 +157,12 @@ function initialize() {
 	// Bind event handler for 'update' [slide] event from noUiSlider control
 	verticalSlider.noUiSlider.on('update', sliderHandler);
 	
-	var csv_fn = 'csv/feature_timeline.csv';
-	// var csv_fn = 'csv/orange_line_timeline.csv';
-	d3.csv(csv_fn, function(d) {
+	var timeline_csv_fn = 'csv/feature_timeline.csv',
+	    resource_csv_fn = 'csv/web_resources.csv';
+	
+	d3.csv(timeline_csv_fn, function(d) {
 	  return {
+		 id:		+d.id,
 		layer_name:	d.layer_name.replace('"',''),
 		start_year: +d.start_year,
 		end_year: 	+d.end_year,
@@ -167,15 +170,25 @@ function initialize() {
 		reopening:	(d.reopening === null || d.reopening === '') ? 'n' : d.reopening,
 		milestone:	d.milestone
 	  };
-	}).then(function(data) {
-		all_records = data;	// Temp, for debuggin
-		all_milestones = _.filter(data, function(rec) { return rec.type !== 'z'; });
-		all_layers = _.filter(data, function(rec) { return rec.layer_name !== 'NULL'; });
+	}).then(function(timeline_data) {
+		all_records = timeline_data;	// Temp, for debuggin
+		all_milestones = _.filter(timeline_data, function(rec) { return rec.type !== 'z'; });
+		all_layers = _.filter(timeline_data, function(rec) { return rec.layer_name !== 'NULL'; });
 		toggleable_layers = _.filter(all_layers, function(rec) { return rec.type !== 'z'; });
 		// Hide all toggleable layers at initialization
 		toggleable_layers.forEach(function(layer) { 
 			var query_str = '#' + layer.layer_name;
 			$(query_str).hide();
+		});
+		d3.csv(resource_csv_fn, function(d) {
+			return {
+				id: +d.id,
+				description: d.description,
+				url: d.url
+			};
+		}).then(function(resource_data) {
+			web_resources = resource_data;
+			var _DEBUG_HOOK = 0;
 		});
 	});
 } // initialize()
