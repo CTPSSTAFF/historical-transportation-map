@@ -1,7 +1,7 @@
 # Python script to generate an HTML file for the historical mapping application,
 # "including" the SVG file provided by Ken Dumas.
 # 
-# -- B. Krepp 12/23/2020
+# -- B. Krepp 12/23/2020, 1/29/2021
 
 
 # function: generate_html
@@ -21,10 +21,10 @@ def generate_html(in_svg_fn, out_html_fn):
 	out_html_fp.write('<head>\n')
 	out_html_fp.write('<meta charset="utf-8">\n')
 	out_html_fp.write('<meta name="viewport" content="width=device-width, initial-scale=1">\n')
-	out_html_fp.write('<title>Test Map #1 </title>\n')
-	out_html_fp.write('<link rel="stylesheet" href="css/test_map_1.css">\n')
+	out_html_fp.write('<title>Historical Transportation Map</title>\n')
+	out_html_fp.write('<link rel="stylesheet" href="css/historical_map.css">\n')
 	out_html_fp.write('<link rel="stylesheet" href="libs/nouislider.css">\n')
-	out_html_fp.write('<script src="https://code.jquery.com/jquery-1.12.4.js"></script>\n')
+	out_html_fp.write('<script src="libs/jquery-1.12.4.min.js"></script>\n')
 	out_html_fp.write('<script src="libs/lodash.js"></script>\n')
 	out_html_fp.write('<script src="libs/nouislider.js"></script>\n')
 	out_html_fp.write('<script src="libs/d3.min.js"></script>\n')
@@ -41,7 +41,9 @@ def generate_html(in_svg_fn, out_html_fn):
 	out_html_fp.write('</div>\n')
 	out_html_fp.write('</div>\n')
 	# End of material for CTPS "branding"
+	
 	out_html_fp.write('<div id="outer_container">\n')
+	out_html_fp.write('<div id="inner_container">\n')
 	out_html_fp.write('<div id="svg_container">\n')
 	
 	# The SVG from Ken
@@ -53,20 +55,25 @@ def generate_html(in_svg_fn, out_html_fn):
 	# Div for slider control
 	out_html_fp.write('<div id="slider-vertical">\n')
 	out_html_fp.write('</div>\n')
+	
+	# End of "inner_container" div
+	out_html_fp.write('</div> <!-- inner_container -->\n')
+	
 	# Div for text output pane
 	out_html_fp.write('<div id="output">\n')
 	out_html_fp.write('</div>\n')
-	# End of outer container div
+	
+	# End of "outer_container" div
 	out_html_fp.write('</div> <!-- outer_container -->\n')
+	
 	# Script tag for app code, end of body and html tags
-	out_html_fp.write('<script src="test_map_1.js"></script>\n')
+	out_html_fp.write('<script src="js/historical_map.js"></script>\n')
 	out_html_fp.write('</body>\n')
 	out_html_fp.write('</html>\n')
 	
 	out_html_fp.close()
 # end_def generate_html()
 
-home_dir = r'C:/Users/ben_k/work_stuff/prototype-historical-map/'
+home_dir = r'C:/Users/ben_k/work_stuff/historical-transportation-map/'
 in_svg = home_dir + 'svg/Timeline_Base_Map-Master-Inline-Style.svg'
-out_html = home_dir + 'test_map_1.html'
-
+out_html = home_dir + 'index.html'
