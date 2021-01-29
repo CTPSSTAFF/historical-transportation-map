@@ -158,11 +158,10 @@ function initialize() {
 	verticalSlider.noUiSlider.on('update', sliderHandler);
 	
 	var timeline_csv_fn = 'csv/feature_timeline.csv',
-	    resource_csv_fn = 'csv/web_resources.csv';
+	    resource_csv_fn = 'csv/timeline_links.csv';
 	
 	d3.csv(timeline_csv_fn, function(d) {
 	  return {
-		id:		+d.id,
 		layer_name:	d.layer_name.replace('"',''),
 		start_year: +d.start_year,
 		end_year: 	+d.end_year,
@@ -182,9 +181,10 @@ function initialize() {
 		});
 		d3.csv(resource_csv_fn, function(d) {
 			return {
-				id: +d.id,
-				description: d.description,
-				url: d.url
+				year: +d.year,
+				type: d.type,
+				txt: d.text,
+				url: d.link
 			};
 		}).then(function(resource_data) {
 			web_resources = resource_data;
