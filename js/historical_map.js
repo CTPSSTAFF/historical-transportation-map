@@ -162,7 +162,7 @@ function initialize() {
 	
 	d3.csv(timeline_csv_fn, function(d) {
 	  return {
-		 id:		+d.id,
+		id:		+d.id,
 		layer_name:	d.layer_name.replace('"',''),
 		start_year: +d.start_year,
 		end_year: 	+d.end_year,
@@ -171,7 +171,7 @@ function initialize() {
 		milestone:	d.milestone
 	  };
 	}).then(function(timeline_data) {
-		all_records = timeline_data;	// Temp, for debuggin
+		all_records = timeline_data;	// Temp, for debugging
 		all_milestones = _.filter(timeline_data, function(rec) { return rec.type !== 'z'; });
 		all_layers = _.filter(timeline_data, function(rec) { return rec.layer_name !== 'NULL'; });
 		toggleable_layers = _.filter(all_layers, function(rec) { return rec.type !== 'z'; });
