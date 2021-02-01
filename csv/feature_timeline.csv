@@ -15,7 +15,7 @@ id,layer_name,milestone,start_year,end_year,type,reopening
 14,Norfolk-Bristol-TP-1806-1857,Norfolk-Bristol Turnpike (Route 1 south of Boston),1806,9999,h,
 15,Cambridge-Turnpike-1807,Cambridge-Concord Turnpike (Route 2 east of Concord),1807,9999,h,
 16,Worcester-Turnpike-1808-1845,Worcester Turnpike (Route 9),1808,9999,h,
-17,Union-Turnpike-1809,Union Turnpike (Route 2 west of Concord),1809,9999,h,
+17,Union-Turnpike-1809,Union Turnpike (Route 2 west of Concord),1809,1965,h,
 18,Middlesex-Turnpike-1811-1841,"Middlesex Turnpike, opened 1811",1811,9999,h,
 19,NULL,"Steamboat Service, Hingham Harbor 1819",1819,9999,w,
 20,NULL,First Omnibus Routes in Boston,1825,9999,t,
