@@ -44,7 +44,7 @@ def preprocess_html(in_html_template_fn, out_html_fn):
 			included_lines = include_fp.readlines()
 			out_html_fp.writelines(included_lines)
 			include_fp.close()
-			print(s)
+			# print(s)
 		# end_if
 	# end_for
 
