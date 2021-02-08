@@ -8,6 +8,7 @@
 	-- B. Krepp, attending metaphysician
 	   10, 11, 14-17, 29-31 December 2020
 	   4, 14-15 January 2021
+	   8 February 2021
 */
 
 var verticalSlider = document.getElementById('slider-vertical');
@@ -19,6 +20,19 @@ var all_records = [],			// All records in feature_timeline CSV file
 	timeline_links = [];		// All records from timeline_links CSV file
 	
 var debugFlag = false;
+
+// make_li: Generate and return an HTML <li> element, whose
+//          contents are _li_text_ and which has CSS class _li_class_.
+// This function is _logically_ nested within "sliderHandler", though 
+// it isn't (yet) _lexically_ nested within it.
+//
+function make_li(li_text, li_class) {
+	var retval;
+	retval = '<li ' + 'class="' + li_class + '">';
+	retval += li_text;
+	retval += '</li>';
+	return retval;
+} // make_li()
 	
 // sliderHandler: Event handler for slider 'update' event
 //
@@ -85,8 +99,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		desc_text += '<h4 class="opened_list_caption">Opened:</h4>';
 		desc_text += '<ul>';
 		opened_this_year.forEach(function(rec) {
-			desc_text += '<li class="milestone_opened">';
-			desc_text += rec.milestone + '</li>';
+			desc_text += make_li(rec.milestone, "milestone_opened");
 		});
 		desc_text += '</ul>';
 	}
@@ -94,8 +107,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		desc_text += '<h4 class="reopened_list_caption">Reopened:</h4>';
 		desc_text += '<ul>';
 		reopened_this_year.forEach(function(rec) {
-			desc_text += '<li class="milestone_reopened">';
-			desc_text += rec.milestone + '</li>';
+			desc_text += make_li(rec.milestone, "milestone_reopened");
 		});
 		desc_text += '</ul>';
 	}
@@ -103,7 +115,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		desc_text += '<h4 class="closed_list_caption">Closed:</h4>';
 		desc_text += '<ul>';
 		closed_this_year.forEach(function(rec) {
-			desc_text += '<li class="milestone_closed">' + rec.milestone +  '</li>';
+			desc_text += make_li(rec.milestone, "milestone_closed");
 		});
 		desc_text += '</ul>';
 	}
@@ -111,8 +123,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		desc_text += '<h4 class="legislative_list_caption">Legislative events:</h4>';
 		desc_text += '<ul>';
 		legislative_this_year.forEach(function(rec) {
-			desc_text += '<li class="milestone_legislative">';
-			desc_text += rec.milestone + '</li>';
+			desc_text += make_li(rec.milestone, "milestone_legislative");
 		});
 		desc_text += '</ul>';
 	}
