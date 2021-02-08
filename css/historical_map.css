@@ -123,6 +123,15 @@
 	font-size: 18px;
 	font-weight: bold;
 }
+.resources_list_caption {
+	color: black;
+	font-size: 18px;
+	font-weight: bold;
+}
+.resource_item {
+}
+.resource_link {
+}
 
 /* Rules for elements of the vertical slider.*/
 /* The slider "bar": */
