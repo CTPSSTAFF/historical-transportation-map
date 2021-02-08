@@ -33,6 +33,17 @@ function make_li(li_text, li_class) {
 	retval += '</li>';
 	return retval;
 } // make_li()
+
+function make_resource_li(rec) {
+	var retval;
+	retval = '<li class="resource_item">';
+	retval += rec.type + ': ';
+	retval += '<a class="resource_link" href="' + rec.url + '"';
+	retval += ' target="_blank">'
+	retval += rec.txt;
+	retval += '</a></li>';
+	return retval;
+} // make_resource_li()
 	
 // sliderHandler: Event handler for slider 'update' event
 //
@@ -54,6 +65,8 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	var current_year_str = values[handle];
 	var current_year = +values[handle];
 	if (debugFlag) { console.log('curent_year: ' + current_year); }
+	
+	// First: turn on/off layers according to the current year
 	
 	// Turn on all toggleable layers whose 
 	// start_year is <= current year AND whose end_year is > current_year.
@@ -78,6 +91,8 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		if (debugFlag) { console.log('Hiding ' + layer.layer_name); }
 		$(query_str).hide();
 	});
+	
+	// Second: Collect all milestones for the current year (there may be none)
 	
 	// Clear the output area, and display the descriptive text for this year's milestones.
 	$('#output').html('');
@@ -127,6 +142,21 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		});
 		desc_text += '</ul>';
 	}
+	
+	// Third: collect all web resources for the current year
+	
+	var resources = _.filter(timeline_links, function(rec) { return rec.year === current_year; });
+	// There can dupes; remove any/all of these
+	resources = _.uniqWith(resources, _.isEqual);
+	if (resources.length !== 0) {
+		desc_text += '<h4 class="resources_list_caption">Web resources:</h4>';
+		desc_text += '<ul>';
+		resources.forEach(function(rec) {
+			desc_text += make_resource_li(rec);
+		});
+		desc_text += '</ul>';
+	}
+	
 	var prefix = '<div class="year_header">' + current_year + '</div>';
 	$('#output').html(prefix + desc_text);
 } // sliderHandler()
