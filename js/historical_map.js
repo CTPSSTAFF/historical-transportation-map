@@ -11,29 +11,32 @@
 */
 
 var verticalSlider = document.getElementById('slider-vertical');
-var all_records = [],			// All records in CSV file
-	all_milestones = [],		// All milestones in CSV file (base layers are not milestones);
-                                // includees milestones w/o a layer, "base layers", and toggleable layers
+var all_records = [],			// All records in feature_timeline CSV file
+	all_milestones = [],		// All milestones in feature_timeline CSV file (base layers are not milestones);
+                                // includes milestones w/o a layer, "base layers", and toggleable layers
     all_layers = [],			// All layers in SVG file, includes "base layers" and toggleable layers
 	toggleable_layers = [],		// Toggle-able layers in SVG map
-	web_resources = [];			// Array-of-objects of web resources
+	timeline_links = [];		// All records from timeline_links CSV file
 	
 var debugFlag = false;
 	
-// Event handler for slider 'update' event
+// sliderHandler: Event handler for slider 'update' event
+//
+// This function is the real "workhorse" of the app.
+// Its signature is as defined by the "noUiSlider" API:
+// 		values: Current slider values (array);
+// 		handle: Handle that caused the event (number);
+// 		unencoded: Slider values without formatting (array);
+// 		tap: Event was caused by the user tapping the slider (boolean);
+// 		positions: Left offset of the handles (array);
+// 		noUiSlider: slider public Api (noUiSlider);
+// 
+// Per the noUiSilder documentation:
+//     "values" is an array containing the current slider values, with formatting applied. 
+//     "handle" is the index of the handle that caused the event, starting at zero. 
+//     "values[handle]" gives the value for the handle that triggered the event.
+//
 function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
-    // values: Current slider values (array);
-    // handle: Handle that caused the event (number);
-    // unencoded: Slider values without formatting (array);
-    // tap: Event was caused by the user tapping the slider (boolean);
-    // positions: Left offset of the handles (array);
-    // noUiSlider: slider public Api (noUiSlider);
-	// 
-	// Per the noUiSilder documentation:
-	//     "values" is an array containing the current slider values, with formatting applied. 
-	//     "handle" is the index of the handle that caused the event, starting at zero. 
-	//     "values[handle]" gives the value for the handle that triggered the event.
-	
 	var current_year_str = values[handle];
 	var current_year = +values[handle];
 	if (debugFlag) { console.log('curent_year: ' + current_year); }
@@ -71,7 +74,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 										return rec.start_year === current_year && rec.type !== 'l' && rec.reopening === 'n'; });
 	var reopened_this_year = _.filter(all_milestones, 
 									function(rec) { 
-										return rec.start_year === current_year && rec.type !== 'l' && rec.reopening === 'y'; });									
+										return rec.start_year === current_year && rec.type !== 'l' && rec.reopening === 'y'; });
 	var legislative_this_year = _.filter(all_milestones, 
 	                                     function(rec) { 
 											return rec.start_year === current_year && rec.type === 'l'; });
@@ -118,9 +121,10 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 } // sliderHandler()
 
 function initialize() {
-	// 'to' and 'from' formatter functions, *both* of which are required 
-	//  by the noUiSlider control, even if only one is used.
-	//
+	// 'to' and 'from' formatter functions for the "noUiSlider" control
+	// Note: *both* 'to' and 'from' formatter functions are required 
+	// by the noUiSlider control, even if only one is actually used.
+
 	// 'to' formatter function: receives a number.
 	function to_formatter(value) {
 		// console.log('to formater: value = ' + value);
@@ -158,7 +162,7 @@ function initialize() {
 	verticalSlider.noUiSlider.on('update', sliderHandler);
 	
 	var timeline_csv_fn = 'csv/feature_timeline.csv',
-	    resource_csv_fn = 'csv/timeline_links.csv';
+	    links_csv_fn = 'csv/timeline_links.csv';
 	
 	d3.csv(timeline_csv_fn, function(d) {
 	  return {
@@ -179,15 +183,15 @@ function initialize() {
 			var query_str = '#' + layer.layer_name;
 			$(query_str).hide();
 		});
-		d3.csv(resource_csv_fn, function(d) {
+		d3.csv(links_csv_fn, function(d) {
 			return {
-				year: +d.year,
-				type: d.type,
-				txt: d.text,
-				url: d.link
+				year:	+d.year,
+				type:	d.type,
+				txt: 	d.text,
+				url: 	d.link
 			};
-		}).then(function(resource_data) {
-			web_resources = resource_data;
+		}).then(function(links_data) {
+			timeline_links = links_data;
 			var _DEBUG_HOOK = 0;
 		});
 	});
