@@ -52,5 +52,11 @@ def preprocess_html(in_html_template_fn, out_html_fn):
 	out_html_fp.close()
 # end_def preprocess_html()
 
-in_html_template = home_dir + 'html/index_template.html'
+# Generate the "index.html" file that includes the SVG inset map:
+in_html_template = home_dir + 'html/index_with_inset_template.html'
 out_html = home_dir + 'index.html'
+preprocess_html(in_html_template, out_html)
+# Generate the "map.html" file that includes the SVG inset map:
+in_html_template = home_dir + 'html/map_with_inset_template.html'
+out_html = home_dir + 'map.html'
+preprocess_html(in_html_template, out_html)
