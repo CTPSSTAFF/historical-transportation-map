@@ -1,7 +1,10 @@
 # Python script to generate an HTML file for the historical mapping application,
 # "including" the SVG file provided by Ken Dumas.
+#
+# As of 2/1/2021 this script is obsolete.
+# It has been superceeded by "html_preprocessor.py".
 # 
-# -- B. Krepp 12/23/2020, 1/29/2021
+# -- B. Krepp 12/23/2020, 1/29/2021, 2/11/2021
 
 
 # function: generate_html
