@@ -1,7 +1,3 @@
-* {
-	font-family:"Trebuchet MS","sans-serif";
-}
-
 /* Rules for CTPS "branding" */
 #banner{
 	position:relative;
@@ -67,6 +63,7 @@
 
 #output {
 	order: 2;
+	font-family:"Trebuchet MS","sans-serif";
 	height: 100%; 	/* height: 726px; */
 	/* width: 550px; */
 	width: 30%;
