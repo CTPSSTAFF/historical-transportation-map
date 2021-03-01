@@ -1,23 +1,54 @@
 /*
-	This code is based on 
-	1. the noUI slider control:
-		https://refreshless.com/nouislider/
-	2. the GitHub repository for this:
-		https://github.com/leongersen/noUiSlider
+	Mapping Boston's Historical Transporatation Infrastructure App
+	
+	Inputs:
+		0. SVG map of historical transportation infrastructure, 
+		   embedded in the index.hmtl file for this app
+		1. Historical transportation feature timeline CSV file.
+		   The records in this file are indexed by year, and 
+		   indicate the start- and end-years in which transportation
+		   features in the SVG are visible. It also contains some
+		   records for which there is no corresponding layer in the
+		   SVG, e.g., features outside the Boston region MPO area.
+		2. Links to web resources CSV file.
+		   The records in this file are indexed by year, and 
+		   specify links to web resources for the transportation
+		   "events" for the year in question.
+		3. Miscellaneous historical facts CSV file.
+		   The records in this file are indexed by year, and
+		   specify the text of interesting (mostly transportation-related)
+		   facts for the year in question.
+		
+	Control:
+		The app is controlled by the "noUIslider Control:
+			https://refreshless.com/nouislider/
+		The GitHub repository for this is:
+			https://github.com/leongersen/noUiSlider
 
 	-- B. Krepp, attending metaphysician
-	   10, 11, 14-17, 29-31 December 2020
-	   4, 14-15 January 2021
-	   8 February 2021
 */
 
+// Symbolic constants - first and last years for which we have data
+var FIRST_YEAR = 1800,
+    LAST_YEAR = 2021;
+	
+// The UI element controlling the app:
 var verticalSlider = document.getElementById('slider-vertical');
+
+// Data from the historical transportation feature timeline CSV, and subsets thereof:
 var all_records = [],			// All records in feature_timeline CSV file
-	all_milestones = [],		// All milestones in feature_timeline CSV file (base layers are not milestones);
+	all_milestones = [];		// All milestones in feature_timeline CSV file (base layers are not milestones);
                                 // includes milestones w/o a layer, "base layers", and toggleable layers
-    all_layers = [],			// All layers in SVG file, includes "base layers" and toggleable layers
-	toggleable_layers = [],		// Toggle-able layers in SVG map
-	timeline_links = [];		// All records from timeline_links CSV file
+
+// Layers in the SVG map:
+var all_layers = [],			// All layers in SVG file, includes "base layers" and toggleable layers
+	toggleable_layers = [];		// Toggle-able layers in SVG map
+	
+// All records from the links to web resources CSV file:
+var timeline_links = [];
+	
+// All records from the miscellaneous historical facts CSV file:
+var historical_data = [];
 	
 var debugFlag = false;
 
@@ -151,8 +182,18 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	if (resources.length !== 0) {
 		desc_text += '<h4 class="resources_list_caption">Web resources:</h4>';
 		desc_text += '<ul>';
-		resources.forEach(function(rec) {
+		resources.forEach(function(rec) { 
 			desc_text += make_resource_li(rec);
+		});
+		desc_text += '</ul>';
+	}
+	
+	var historical = _.filter(historical_data, function(rec) { return rec.year === current_year; });
+	if (historical.length !== 0) {
+		desc_text += '<h4 class="historical_list_caption">This year in history:</h4>';
+		desc_text += '<ul>';
+		historical.forEach(function(rec) { 
+			desc_text += make_li(rec.text, "historical_item");
 		});
 		desc_text += '</ul>';
 	}
@@ -162,7 +203,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 } // sliderHandler()
 
 function initialize() {
-	// 'to' and 'from' formatter functions for the "noUiSlider" control
+	// The 'to' and 'from' formatter functions for the "noUiSlider" control
 	// Note: *both* 'to' and 'from' formatter functions are required 
 	// by the noUiSlider control, even if only one is actually used.
 
@@ -203,37 +244,50 @@ function initialize() {
 	verticalSlider.noUiSlider.on('update', sliderHandler);
 	
 	var timeline_csv_fn = 'csv/feature_timeline.csv',
-	    links_csv_fn = 'csv/timeline_links.csv';
+	    links_csv_fn = 'csv/timeline_links.csv',
+		historical_csv_fn = 'csv/historical_items.csv';
 	
+	// Load the "historical transportation feature timeline CSV"
 	d3.csv(timeline_csv_fn, function(d) {
-	  return {
-		layer_name:	d.layer_name.replace('"',''),
-		start_year: +d.start_year,
-		end_year: 	+d.end_year,
-		type:		d.type,
-		reopening:	(d.reopening === null || d.reopening === '') ? 'n' : d.reopening,
-		milestone:	d.milestone
-	  };
+		return {	layer_name:	d.layer_name.replace('"',''),
+					start_year: +d.start_year,
+					end_year: 	+d.end_year,
+					type:		d.type,
+					reopening:	(d.reopening === null || d.reopening === '') ? 'n' : d.reopening,
+					milestone:	d.milestone
+		};
 	}).then(function(timeline_data) {
 		all_records = timeline_data;	// Temp, for debugging
 		all_milestones = _.filter(timeline_data, function(rec) { return rec.type !== 'z'; });
 		all_layers = _.filter(timeline_data, function(rec) { return rec.layer_name !== 'NULL'; });
 		toggleable_layers = _.filter(all_layers, function(rec) { return rec.type !== 'z'; });
+		
 		// Hide all toggleable layers at initialization
 		toggleable_layers.forEach(function(layer) { 
 			var query_str = '#' + layer.layer_name;
 			$(query_str).hide();
 		});
+		
+		// Load the "links to web resources CSV"
 		d3.csv(links_csv_fn, function(d) {
-			return {
-				year:	+d.year,
-				type:	d.type,
-				txt: 	d.text,
-				url: 	d.link
+			return {	year:	+d.year,
+						type:	d.type,
+						txt: 	d.text,
+						url: 	d.link
 			};
 		}).then(function(links_data) {
 			timeline_links = links_data;
-			var _DEBUG_HOOK = 0;
+			
+			// Load the "miscellaneous historical facts CSV"
+			d3.csv(historical_csv_fn, function(d) {
+				return { year:	+d.year,
+						 text: 	d.text
+				};
+			}).then(function(historical_records) {
+				historical_data = historical_records;
+				var _DEBUG_HOOK  = 0;
+				verticalSlider.noUiSlider.set(FIRST_YEAR);
+			});
 		});
 	});
 } // initialize()
