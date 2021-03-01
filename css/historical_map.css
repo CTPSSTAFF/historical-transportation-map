@@ -130,6 +130,18 @@
 .resource_link {
 }
 
+.historical_list_caption {
+	color: black;
+	font-size: 18px;
+	font-weight: bold;
+}
+.historical_item {
+	color: gray;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+
 /* Rules for elements of the vertical slider.*/
 /* The slider "bar": */
 #slider-vertical .noUi-base .noUi-connects {
