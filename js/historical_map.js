@@ -203,7 +203,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 } // sliderHandler()
 
 var timerId = 0;
-var TIMER_INTERVAL = 2000;
+var TIMER_INTERVAL = 1500; // 1500 milliseconds === 1.5 seconds
 
 function timerFunction() {
 	var currentYear = +verticalSlider.noUiSlider.get();
