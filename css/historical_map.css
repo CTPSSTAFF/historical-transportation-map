@@ -53,12 +53,27 @@
 	border-color: steelblue;
 	margin-bottom: 10px;
 }
+
+#inner_container_right {
+	order: 2;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	margin-left: 60px;
+	margin-right: 75px;	
+}
+#button_div {
+	order: 1;
+	height: 40px;
+}
 #slider-vertical {
 	order: 2;
-	height:726px; /* Appears to need a hard-wired height. */
+	height:686px; /* (was 726px) Appears to need a hard-wired height. */
+	/*
 	margin-bottom: 10px;
 	margin-left: 60px;
 	margin-right: 75px;
+	*/
 }
 
 #output {
@@ -137,7 +152,7 @@
 }
 .historical_item {
 	color: gray;
-	font-size: 10px;
+	font-size: 16px;
 	font-weight: bold;
 }
 

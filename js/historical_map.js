@@ -202,6 +202,43 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	$('#output').html(prefix + desc_text);
 } // sliderHandler()
 
+var timerId = 0;
+var TIMER_INTERVAL = 1500; // 1500 milliseconds === 1.5 seconds
+
+function timerFunction() {
+	var currentYear = +verticalSlider.noUiSlider.get();
+	// Debug/trace
+	console.log('timerFunction called: current year = ' + currentYear);
+	if (currentYear !== LAST_YEAR) {
+		verticalSlider.noUiSlider.set(currentYear + 1);
+	} else {
+		// Timeline exhausted: clear the interval timer
+		window.clearInterval(timerId);
+	}
+} // timerFunction()
+
+// Event handler for the "play" (a.k.a. "stop") button
+function toggleAutoplay(evt) {
+	var _DEBUG_HOOK = 0;
+	if (evt.target.value === 'Play') {
+		console.log('Starting auto-play.');
+		// Change button label
+		evt.target.value = 'Pause';
+		// Disable user interaction with slider
+		verticalSlider.setAttribute('disabled', true);
+		timerId = window.setInterval(timerFunction, TIMER_INTERVAL);
+		
+	} else {
+		console.log('Stopping auto-play.');
+		// Change button label
+		evt.target.value = 'Play';
+		// Re-enable user interaction with slider
+		verticalSlider.removeAttribute('disabled');
+		// Clear the interval timer 
+		window.clearInterval(timerId);
+	}
+} // manageAutoplay()
+
 function initialize() {
 	// The 'to' and 'from' formatter functions for the "noUiSlider" control
 	// Note: *both* 'to' and 'from' formatter functions are required 
@@ -287,6 +324,7 @@ function initialize() {
 				historical_data = historical_records;
 				var _DEBUG_HOOK  = 0;
 				verticalSlider.noUiSlider.set(FIRST_YEAR);
+				$('#play_button').on('click', toggleAutoplay);
 			});
 		});
 	});
