@@ -2,7 +2,7 @@ year,type,text,link,location
 1804,Memo,Washington Street at Broad Street in Weymouth,https://www.bostonmpo.org/data/html/studies/highway/2014_safety_operations/Weymouth_Safety_Operations_2014.html,Boston MPO
 1805,Data,Route 1 North: Average Speeds and Travel Times,https://www.bostonmpo.org/node/3251,Boston MPO
 1805,Data,Route 1 North: Express highway count locations,https://www.bostonmpo.org/node/3239,Boston MPO
-1805,Website,"Newburyport Turnpike opens, February 11, 1805: ""Over every hill and missing every town""",https://historicipswich.org/2019/02/11/over-every-hill-and-missing-every-town/,External
+1805,Website,"Newburyport Turnpike opens, February 11, 1805: “Over every hill and missing every town”",https://historicipswich.org/2019/02/11/over-every-hill-and-missing-every-town/,External
 1805,Data,Route 1 North: Traffic Volumes,https://www.bostonmpo.org/node/3269,Boston MPO
 1807,Memo,Traffic Signal-Retiming Study for Route 2 in Concord and Lincoln,https://www.bostonmpo.org/data/html/studies/highway/2013_priority_corridors/2013_Priority_Corridors_Route_2.html,Boston MPO
 1808,Report,Route 9 Corridor Study in Brookline,https://www.bostonmpo.org/data/html/studies/highway/2019-safety-operations/Route-9-Brookline-Corridor-Study-Report.html,Boston MPO
@@ -148,16 +148,16 @@ year,type,text,link,location
 1959,Data,Traffic Volumes on I-93 Central Artery,https://www.bostonmpo.org/node/3302,Boston MPO
 1959,Data,Express highway count locations: I-93 Central Artery,https://www.bostonmpo.org/node/3201,Boston MPO
 1959,Data,Improving the Southeast Expressway: A Conceptual Plan,https://www.bostonmpo.org/se_expr_concept,Boston MPO
-1959,Data,"Southeast Expressway Travel Times: Southbound General-Purpose Lanes, PM Peak Period, 2002–11",https://www.bostonmpo.org/node/3286,Boston MPO
-1959,Data,"Southeast Expressway Travel Times: Northbound Travel Lanes, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3285,Boston MPO
-1959,Data,"Southeast Expressway Travel Times: Northbound HOV Lane, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3313,Boston MPO
-1959,Data,"Southeast Expressway Travel Times: Northbound General-Purpose Lanes, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3312,Boston MPO
-1959,Data,"Southeast Expressway Travel Times: Southbound Travel Lanes, PM Peak Period, 2002–11",https://www.bostonmpo.org/node/3288,Boston MPO
-1959,Data,"Southeast Expressway Travel Times: Southbound HOV Lane, PM Peak Period, 2002–11",https://www.bostonmpo.org/node/3287,Boston MPO
+1959,Data,"Southeast Expressway Travel Times: Southbound General-Purpose Lanes, PM Peak Period, 2002+C15211",https://www.bostonmpo.org/node/3286,Boston MPO
+1959,Data,"Southeast Expressway Travel Times: Northbound Travel Lanes, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3285,Boston MPO
+1959,Data,"Southeast Expressway Travel Times: Northbound HOV Lane, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3313,Boston MPO
+1959,Data,"Southeast Expressway Travel Times: Northbound General-Purpose Lanes, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3312,Boston MPO
+1959,Data,"Southeast Expressway Travel Times: Southbound Travel Lanes, PM Peak Period, 2002-11",https://www.bostonmpo.org/node/3288,Boston MPO
+1959,Data,"Southeast Expressway Travel Times: Southbound HOV Lane, PM Peak Period, 2002-11",https://www.bostonmpo.org/node/3287,Boston MPO
 1959,Data,Traffic Volumes on I-93 Southeast Expressway,https://www.bostonmpo.org/node/3267,Boston MPO
-1959,Data,"I-93 North Travel Times: Southbound HOV Lane, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3256,Boston MPO
-1959,Data,"I-93 North Travel Times: Southbound Travel Lanes, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3232,Boston MPO
-1959,Data,"I-93 North Travel Times: Southbound General-Purpose Lanes, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3211,Boston MPO
+1959,Data,"I-93 North Travel Times: Southbound HOV Lane, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3256,Boston MPO
+1959,Data,"I-93 North Travel Times: Southbound Travel Lanes, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3232,Boston MPO
+1959,Data,"I-93 North Travel Times: Southbound General-Purpose Lanes, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3211,Boston MPO
 1959,Data,I-93 / Southeast Expressway / Route 3 (Braintree Split) Operational Assessment and Potential Improvements,https://www.bostonmpo.org/braintree_split,Boston MPO
 1959,Website,MBTA Green Line,https://www.mbta.com/schedules/Green-D/line,External
 1959,Website,Old Colony Railroad-Middleborough,https://www.mbta.com/schedules/CR-Middleborough/line,External
@@ -224,16 +224,16 @@ year,type,text,link,location
 1993,Memo,Trucks at the Southampton Street Bottleneck,https://www.bostonmpo.org/trucks-southampton-street,Boston MPO
 1993,Blog,MassDOT Completes Framingham Secondary Rail Line Acquisition,https://blog.mass.gov/transportation/massdot-rail-transit/massdot-completes-framingham-secondary-rail-line-acquisition/,External
 1994,Website,Interstate 93 HOV lane,https://www.mass.gov/service-details/interstate-93-hov-lane,External
-1994,Data,"I-93 North Travel Times: Southbound HOV Lane, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3256,Boston MPO
-1994,Data,"I-93 North Travel Times: Southbound Travel Lanes, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3232,Boston MPO
-1994,Data,"I-93 North Travel Times: Southbound General-Purpose Lanes, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3211,Boston MPO
+1994,Data,"I-93 North Travel Times: Southbound HOV Lane, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3256,Boston MPO
+1994,Data,"I-93 North Travel Times: Southbound Travel Lanes, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3232,Boston MPO
+1994,Data,"I-93 North Travel Times: Southbound General-Purpose Lanes, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3211,Boston MPO
 1994,Website,Commuter Rail Extention to Worcester,https://www.mbta.com/schedules/CR-Worcester/line,External
 1995,Website,South Station Bus Terminal,https://www.south-station.net/regional-bus,External
 1995,Website,South Station,https://www.south-station.net/,External
 1995,Website,Southeast Expressway HOV Lane,https://www.mass.gov/service-details/southeast-expressway-hov-lane,External
-1995,Data,"Southeast Expressway Travel Times: Northbound HOV Lane, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3313,Boston MPO
-1995,Data,"Southeast Expressway Travel Times: Southbound HOV Lane, PM Peak Period, 2002–11",https://www.bostonmpo.org/node/3287,Boston MPO
-1995,Data,"I-93 North Travel Times: Southbound HOV Lane, AM Peak Period, 2002–11",https://www.bostonmpo.org/node/3256,Boston MPO
+1995,Data,"Southeast Expressway Travel Times: Northbound HOV Lane, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3313,Boston MPO
+1995,Data,"Southeast Expressway Travel Times: Southbound HOV Lane, PM Peak Period, 2002-11",https://www.bostonmpo.org/node/3287,Boston MPO
+1995,Data,"I-93 North Travel Times: Southbound HOV Lane, AM Peak Period, 2002-11",https://www.bostonmpo.org/node/3256,Boston MPO
 1995,Website,Ted Williams Tunnel,https://www.mass.gov/info-details/the-big-dig-tunnels-and-bridges#the-ted-williams-tunnel-,External
 1995,Website,The Big Dig,https://www.mass.gov/info-details/the-big-dig-project-background,External
 1997,Website,Old Colony Railroad-Plymouth,https://www.mbta.com/schedules/CR-Kingston/line,External
