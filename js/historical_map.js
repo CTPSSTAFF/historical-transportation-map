@@ -143,7 +143,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	var desc_text = '';
 	if (opened_this_year.length !== 0) {
 		desc_text += '<h4 class="opened_list_caption">Opened:</h4>';
-		desc_text += '<ul>';
+		desc_text += '<ul class="unindented_ul">';
 		opened_this_year.forEach(function(rec) {
 			desc_text += make_li(rec.milestone, "milestone_opened");
 		});
@@ -151,7 +151,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	}
 	if (reopened_this_year.length !== 0) {
 		desc_text += '<h4 class="reopened_list_caption">Reopened:</h4>';
-		desc_text += '<ul>';
+		desc_text += '<ul class="unindented_ul">';
 		reopened_this_year.forEach(function(rec) {
 			desc_text += make_li(rec.milestone, "milestone_reopened");
 		});
@@ -159,7 +159,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	}
 	if (closed_this_year.length !== 0) {
 		desc_text += '<h4 class="closed_list_caption">Closed:</h4>';
-		desc_text += '<ul>';
+		desc_text += '<ul class="unindented_ul">';
 		closed_this_year.forEach(function(rec) {
 			desc_text += make_li(rec.milestone, "milestone_closed");
 		});
@@ -167,7 +167,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	}
 	if (legislative_this_year.length !== 0) {
 		desc_text += '<h4 class="legislative_list_caption">Legislative events:</h4>';
-		desc_text += '<ul>';
+		desc_text += '<ul class="unindented_ul">';
 		legislative_this_year.forEach(function(rec) {
 			desc_text += make_li(rec.milestone, "milestone_legislative");
 		});
@@ -181,7 +181,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	resources = _.uniqWith(resources, _.isEqual);
 	if (resources.length !== 0) {
 		desc_text += '<h4 class="resources_list_caption">Web resources:</h4>';
-		desc_text += '<ul>';
+		desc_text += '<ul class="unindented_ul">';
 		resources.forEach(function(rec) { 
 			desc_text += make_resource_li(rec);
 		});
@@ -191,7 +191,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	var historical = _.filter(historical_data, function(rec) { return rec.year === current_year; });
 	if (historical.length !== 0) {
 		desc_text += '<h4 class="historical_list_caption">This year in history:</h4>';
-		desc_text += '<ul>';
+		desc_text += '<ul class="unindented_ul">';
 		historical.forEach(function(rec) { 
 			desc_text += make_li(rec.text, "historical_item");
 		});
