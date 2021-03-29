@@ -76,6 +76,7 @@ year,type,text,link,location
 1901,Website,MBTA Orange Line,https://www.mbta.com/schedules/Orange/line,External
 1901,Website,Elevated Orange Line,http://www.bostonstreetcars.com/orange-line.html,External
 1901,Blog,Atlantic Avenue Elevated,http://goodoldboston.blogspot.com/2011/12/atlantic-avenue-trains-times-two.html,External
+1901,Website,Atlantic Avenue Elevated Photo Album,https://www.flickr.com/photos/cityofbostonarchives/albums/72157647488510784/,External
 1901,Website,Dudley Square Station,http://www.bostonstreetcars.com/dudley-square.html,External
 1901,Website,Sullivan Station,http://www.bostonstreetcars.com/sullivan-square.html,External
 1904,Website,MBTA Blue Line,https://www.mbta.com/schedules/Blue/line,External
@@ -96,6 +97,8 @@ year,type,text,link,location
 1919,Website,MBTA Orange Line,https://www.mbta.com/schedules/Orange/line,External
 1919,Website,Sullivan Station,http://www.bostonstreetcars.com/sullivan-square.html,External
 1919,Website,Elevated Orange Line,http://www.bostonstreetcars.com/orange-line.html,External
+1919,Website,The Boston Molasses Disaster,https://www.theatlantic.com/photo/2015/01/on-this-day-the-boston-molasses-disaster-in-1919/384573/,External
+1919,Website,The Great Boston Molasses Flood,http://www.billdamon.com/the-great-boston-molasses-flood-of-1919/#sthash.CLyG4oHQ.dpbs,External
 1923,Website,Boston Airport,https://www.historycentral.com/aviation/airports/Logan.ht,External
 1927,Website,MBTA Red Line,https://www.mbta.com/schedules/Red/line,External
 1928,Website,MBTA Red Line,https://www.mbta.com/schedules/Red/line,External
