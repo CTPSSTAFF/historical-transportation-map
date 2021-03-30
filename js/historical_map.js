@@ -75,6 +75,51 @@ function make_resource_li(rec) {
 	retval += '</a></li>';
 	return retval;
 } // make_resource_li()
+
+// makeTable: Generate an HTML table from _data_ that emulates an HTML unordered list.
+//            Each row of the table consists of two columns:
+//            1. the "bullet" symbol, i.e.,  the HTML &bullet; entity
+//            2. the  property, specified by the propName parameter,
+//               in each record of the _data_ parameter
+// The purpose of this folderol is to ensure that the text, if wrapped,
+// will be indented uniformly to the right of the bullet symbol.
+// The CSS class associated with the <td> containing the "bullet" symbol
+// in column 1 ensures that the contents of this <td> are aligned with
+// the top of the cell.
+//
+// Parameters:
+//     aData - array of objects, the text property of each is to be rendered into
+//             column 2 of the generated HTML table
+//     propertyToGet --
+//     textClass - CSS class to apply to the HTML <td>s in column 2 of
+//                        the table
+// Return value: 
+//    string containing text of HTML table for the whole shebang
+//
+// Note: This function is _logically_ nested within "sliderHandler", though 
+//       it isn't (yet) _lexically_ nested within it. Such is life.
+//
+function makeTable(aData, propName, textClass) {
+	var retval = '';
+	retval += '<table>';
+	retval += '<tbody>';
+	aData.forEach(function(row) {
+		retval += '<tr>'
+		retval += '<td class="fake_li_bullet">';
+		retval += '&bullet;';
+		retval += '</td>';
+		retval += '<td class="' + textClass + '">';
+		retval += row[propName];
+		retval += '</td>';
+		retval += '</tr>';
+		var _DEBUG_HOOK_1 = 0;
+	});
+	retval += '</tbody>';
+	retval += '</table>';
+	var _DEBUG_HOOK_2 = 0;
+	return retval;
+} // makeTable()
+
 	
 // sliderHandler: Event handler for slider 'update' event
 //
@@ -123,11 +168,12 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		$(query_str).hide();
 	});
 	
-	// Second: Collect all milestones for the current year (there may be none)
-	
-	// Clear the output area, and display the descriptive text for this year's milestones.
+	// Second: Clear the output area
 	$('#output').html('');
 	
+	// Third: Collect all milestones for the current year (there may be none)
+	//        and display the descriptive text for this year's milestones.
+
 	// N.B. "Legislative" milestones are a subset of "opening" milestones, cull these into two distinct lists.
 	var opened_this_year = _.filter(all_milestones, 
 									function(rec) { 
@@ -141,6 +187,8 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	var closed_this_year = _.filter(all_milestones, function(rec) { return rec.end_year === current_year; });
 	
 	var desc_text = '';
+	
+	/* 
 	if (opened_this_year.length !== 0) {
 		desc_text += '<h4 class="opened_list_caption">Opened:</h4>';
 		desc_text += '<ul class="unindented_ul">';
@@ -149,6 +197,14 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		});
 		desc_text += '</ul>';
 	}
+	*/
+	
+	if (opened_this_year.length !== 0) {
+		desc_text += '<h4 class="opened_list_caption">Opened:</h4>';
+		desc_text += makeTable(opened_this_year, "milestone", "milestone_opened");
+	}
+	
+	/*
 	if (reopened_this_year.length !== 0) {
 		desc_text += '<h4 class="reopened_list_caption">Reopened:</h4>';
 		desc_text += '<ul class="unindented_ul">';
@@ -157,6 +213,15 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		});
 		desc_text += '</ul>';
 	}
+	*/
+	
+	if (reopened_this_year.length !== 0) {
+		desc_text += '<h4 class="reopened_list_caption">Reopened:</h4>';
+		desc_text += makeTable(reopened_this_year, "milestone", "milestone_reopened");
+	}
+	
+	
+	/* 
 	if (closed_this_year.length !== 0) {
 		desc_text += '<h4 class="closed_list_caption">Closed:</h4>';
 		desc_text += '<ul class="unindented_ul">';
@@ -165,6 +230,14 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		});
 		desc_text += '</ul>';
 	}
+	*/
+	
+	if (closed_this_year.length !== 0) {
+		desc_text += '<h4 class="closed_list_caption">Closed:</h4>';
+		desc_text += makeTable(closed_this_year, "milestone", "milestone_closed");
+	}
+	
+	/*
 	if (legislative_this_year.length !== 0) {
 		desc_text += '<h4 class="legislative_list_caption">Legislative events:</h4>';
 		desc_text += '<ul class="unindented_ul">';
@@ -173,9 +246,17 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		});
 		desc_text += '</ul>';
 	}
+	*/
 	
-	// Third: collect all web resources for the current year
+	if (legislative_this_year.length !== 0) {
+		desc_text += '<h4 class="legislative_list_caption">Legislative events:</h4>';
+		desc_text += makeTable(legislative_this_year, "milestone", "milestone_legislative");
+	}
 	
+	
+	
+	
+	// Fourth: Collect all web resources for the current year
 	var resources = _.filter(timeline_links, function(rec) { return rec.year === current_year; });
 	// There can dupes; remove any/all of these
 	resources = _.uniqWith(resources, _.isEqual);
@@ -188,7 +269,10 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		desc_text += '</ul>';
 	}
 	
+	// Fifth: Collect all "historical facts" for the current year
 	var historical = _.filter(historical_data, function(rec) { return rec.year === current_year; });
+	
+	/*
 	if (historical.length !== 0) {
 		desc_text += '<h4 class="historical_list_caption">This year in history:</h4>';
 		desc_text += '<ul class="unindented_ul">';
@@ -197,7 +281,14 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		});
 		desc_text += '</ul>';
 	}
+	*/
 	
+	if (historical.length !== 0) {
+		desc_text += '<h4 class="historical_list_caption">This year in history:</h4>';
+		desc_text += makeTable(historical, "text", "historical_item");
+	}
+	
+	// Sixth: Render the whole shebang
 	var prefix = '<div class="year_header">' + current_year + '</div>';
 	$('#output').html(prefix + desc_text);
 } // sliderHandler()
@@ -208,7 +299,7 @@ var TIMER_INTERVAL = 1500; // 1500 milliseconds === 1.5 seconds
 function timerFunction() {
 	var currentYear = +verticalSlider.noUiSlider.get();
 	// Debug/trace
-	console.log('timerFunction called: current year = ' + currentYear);
+	if (debugFlag) { console.log('timerFunction called: current year = ' + currentYear); }
 	if (currentYear !== LAST_YEAR) {
 		verticalSlider.noUiSlider.set(currentYear + 1);
 	} else {
@@ -219,7 +310,6 @@ function timerFunction() {
 
 // Event handler for the "play" (a.k.a. "stop") button
 function toggleAutoplay(evt) {
-	var _DEBUG_HOOK = 0;
 	if (evt.target.value === 'Play') {
 		console.log('Starting auto-play.');
 		// Change button label
@@ -322,7 +412,6 @@ function initialize() {
 				};
 			}).then(function(historical_records) {
 				historical_data = historical_records;
-				var _DEBUG_HOOK  = 0;
 				verticalSlider.noUiSlider.set(FIRST_YEAR);
 				$('#play_button').on('click', toggleAutoplay);
 			});

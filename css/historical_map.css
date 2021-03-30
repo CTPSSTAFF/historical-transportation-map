@@ -96,6 +96,11 @@
 	/* text-align: -webkit-center; */
 }
 
+/* Force vertical alignment of contents of <table> used to fake bullets in an unordered list. */
+td.fake_li_bullet {
+	vertical-align:	top;
+}
+
 /* "Generic" unordered list for app - no indentation. */
 ul.unindented_ul {
 	list-style-position: inside;
