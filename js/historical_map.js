@@ -52,29 +52,6 @@ var historical_data = [];
 	
 var debugFlag = false;
 
-// make_li: Generate and return an HTML <li> element, whose
-//          contents are _li_text_ and which has CSS class _li_class_.
-// This function is _logically_ nested within "sliderHandler", though 
-// it isn't (yet) _lexically_ nested within it.
-//
-function make_li(li_text, li_class) {
-	var retval;
-	retval = '<li ' + 'class="' + li_class + '">';
-	retval += li_text;
-	retval += '</li>';
-	return retval;
-} // make_li()
-
-function make_resource_li(rec) {
-	var retval;
-	retval = '<li class="resource_item">';
-	retval += rec.type + ': ';
-	retval += '<a class="resource_link" href="' + rec.url + '"';
-	retval += ' target="_blank">'
-	retval += rec.txt;
-	retval += '</a></li>';
-	return retval;
-} // make_resource_li()
 
 // makeTable: Generate an HTML table from _data_ that emulates an HTML unordered list.
 //            Each row of the table consists of two columns:
@@ -90,7 +67,7 @@ function make_resource_li(rec) {
 // Parameters:
 //     aData - array of objects, the text property of each is to be rendered into
 //             column 2 of the generated HTML table
-//     propertyToGet --
+//     propertyToGet - name of property in records in aData to be rendered
 //     textClass - CSS class to apply to the HTML <td>s in column 2 of
 //                        the table
 // Return value: 
@@ -121,13 +98,26 @@ function makeTable(aData, propName, textClass) {
 
 // makeTableWithLinks: A customized version of "makeTable" to generate an
 //                     HTML table the second column of which contains URLs.
+//
+// Parameters:
+//     aData - array of objects, the text property of each is to be rendered into
+//             column 2 of the generated HTML table
+//     urlPropName - name of property in records in aData containing URL
+//     txtPropName - name of properts in records in aData containing the
+//                   text to be displayed in place of the raw URL
+//     textClass - CSS class to apply to the HTML <td>s in column 2 of
+//                 the table
+//
+// Return value:
+//    string containing text of HTML table for the whole shebang
 // 
-// Rather than attempt to parameterized makeTable to also handle the 
+// Rather than attempt to parameterize makeTable to also handle the 
 // functionality required here, the decsion was taken to write a 
 // customized function for it, for the sake of expediency.
 //
 // Note: This function is also _logically_ nested within "sliderHandler",
 //       though it isn't (yet) _lexically_ nested within it.
+//
 function makeTableWithLinks(aData, urlPropName, txtPropName, textClass) {
 	var retval = '';
 	retval += '<table>';
@@ -139,12 +129,10 @@ function makeTableWithLinks(aData, urlPropName, txtPropName, textClass) {
 		retval += '</td>';
 		retval += '<td class="' + textClass + '">';
 		retval += row['type'] + ': ';
-		
-			retval += '<a class="resource_link" href="' + row[urlPropName] + '"';
-			retval += ' target="_blank">'
-			retval += row[txtPropName];
-			retval += '</a>';
-		
+		retval += '<a class="resource_link" href="' + row[urlPropName] + '"';
+		retval += ' target="_blank">'
+		retval += row[txtPropName];
+		retval += '</a>';
 		retval += '</td>';
 		retval += '</tr>';
 	});
@@ -175,7 +163,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	if (debugFlag) { console.log('curent_year: ' + current_year); }
 	
 	// First: turn on/off layers according to the current year
-	
+	//
 	// Turn on all toggleable layers whose 
 	// start_year is <= current year AND whose end_year is > current_year.
 	var to_show = _.filter(toggleable_layers, 
@@ -189,7 +177,6 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		// var txt = layer.desc;
 		// $('#output').html(txt);
 	});
-	
 	// Turn off all toggleable layers whose 
 	// start_year is > current_year OR whose end_year <= current_year.
 	var to_hide = _.filter(toggleable_layers, function(rec) { 
@@ -205,7 +192,6 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	
 	// Third: Collect all milestones for the current year (there may be none)
 	//        and generate the descriptive text for this year's milestones.
-
 	// N.B. "Legislative" milestones are a subset of "opening" milestones, cull these into two distinct lists.
 	var opened_this_year = _.filter(all_milestones, 
 									function(rec) { 
@@ -237,23 +223,10 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		desc_text += makeTable(legislative_this_year, "milestone", "milestone_legislative");
 	}
 	
-	
 	// Fourth: Collect all web resources for the current year
 	var resources = _.filter(timeline_links, function(rec) { return rec.year === current_year; });
 	// There can dupes; remove any/all of these
 	resources = _.uniqWith(resources, _.isEqual);
-	
-	/*
-	if (resources.length !== 0) {
-		desc_text += '<h4 class="resources_list_caption">Web resources:</h4>';
-		desc_text += '<ul class="unindented_ul">';
-		resources.forEach(function(rec) { 
-			desc_text += make_resource_li(rec);
-		});
-		desc_text += '</ul>';
-	}
-	*/
-	
 	if (resources.length !== 0) {
 		desc_text += '<h4 class="resources_list_caption">Web resources:</h4>';
 		desc_text += makeTableWithLinks(resources, "url", "txt", "resource_item");
@@ -265,7 +238,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		desc_text += '<h4 class="historical_list_caption">This year in history:</h4>';
 		desc_text += makeTable(historical, "text", "historical_item");
 	}
-	
+
 	// Sixth: Render the whole shebang
 	var prefix = '<div class="year_header">' + current_year + '</div>';
 	$('#output').html(prefix + desc_text);
