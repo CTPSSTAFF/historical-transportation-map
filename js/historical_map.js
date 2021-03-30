@@ -96,8 +96,8 @@ function make_resource_li(rec) {
 // Return value: 
 //    string containing text of HTML table for the whole shebang
 //
-// Note: This function is _logically_ nested within "sliderHandler", though 
-//       it isn't (yet) _lexically_ nested within it. Such is life.
+// Note: This function is _logically_ nested within "sliderHandler",
+//       though it isn't (yet) _lexically_ nested within it.
 //
 function makeTable(aData, propName, textClass) {
 	var retval = '';
@@ -112,15 +112,47 @@ function makeTable(aData, propName, textClass) {
 		retval += row[propName];
 		retval += '</td>';
 		retval += '</tr>';
-		var _DEBUG_HOOK_1 = 0;
 	});
 	retval += '</tbody>';
 	retval += '</table>';
-	var _DEBUG_HOOK_2 = 0;
 	return retval;
 } // makeTable()
 
-	
+
+// makeTableWithLinks: A customized version of "makeTable" to generate an
+//                     HTML table the second column of which contains URLs.
+// 
+// Rather than attempt to parameterized makeTable to also handle the 
+// functionality required here, the decsion was taken to write a 
+// customized function for it, for the sake of expediency.
+//
+// Note: This function is also _logically_ nested within "sliderHandler",
+//       though it isn't (yet) _lexically_ nested within it.
+function makeTableWithLinks(aData, urlPropName, txtPropName, textClass) {
+	var retval = '';
+	retval += '<table>';
+	retval += '<tbody>';
+	aData.forEach(function(row) {
+		retval += '<tr>'
+		retval += '<td class="fake_li_bullet">';
+		retval += '&bullet;';
+		retval += '</td>';
+		retval += '<td class="' + textClass + '">';
+		retval += row['type'] + ': ';
+		
+			retval += '<a class="resource_link" href="' + row[urlPropName] + '"';
+			retval += ' target="_blank">'
+			retval += row[txtPropName];
+			retval += '</a>';
+		
+		retval += '</td>';
+		retval += '</tr>';
+	});
+	retval += '</tbody>';
+	retval += '</table>';
+	return retval;
+} // makeTableWithLinks()
+
 // sliderHandler: Event handler for slider 'update' event
 //
 // This function is the real "workhorse" of the app.
@@ -172,7 +204,7 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	$('#output').html('');
 	
 	// Third: Collect all milestones for the current year (there may be none)
-	//        and display the descriptive text for this year's milestones.
+	//        and generate the descriptive text for this year's milestones.
 
 	// N.B. "Legislative" milestones are a subset of "opening" milestones, cull these into two distinct lists.
 	var opened_this_year = _.filter(all_milestones, 
@@ -187,79 +219,31 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	var closed_this_year = _.filter(all_milestones, function(rec) { return rec.end_year === current_year; });
 	
 	var desc_text = '';
-	
-	/* 
-	if (opened_this_year.length !== 0) {
-		desc_text += '<h4 class="opened_list_caption">Opened:</h4>';
-		desc_text += '<ul class="unindented_ul">';
-		opened_this_year.forEach(function(rec) {
-			desc_text += make_li(rec.milestone, "milestone_opened");
-		});
-		desc_text += '</ul>';
-	}
-	*/
-	
+
 	if (opened_this_year.length !== 0) {
 		desc_text += '<h4 class="opened_list_caption">Opened:</h4>';
 		desc_text += makeTable(opened_this_year, "milestone", "milestone_opened");
 	}
-	
-	/*
-	if (reopened_this_year.length !== 0) {
-		desc_text += '<h4 class="reopened_list_caption">Reopened:</h4>';
-		desc_text += '<ul class="unindented_ul">';
-		reopened_this_year.forEach(function(rec) {
-			desc_text += make_li(rec.milestone, "milestone_reopened");
-		});
-		desc_text += '</ul>';
-	}
-	*/
-	
 	if (reopened_this_year.length !== 0) {
 		desc_text += '<h4 class="reopened_list_caption">Reopened:</h4>';
 		desc_text += makeTable(reopened_this_year, "milestone", "milestone_reopened");
 	}
-	
-	
-	/* 
-	if (closed_this_year.length !== 0) {
-		desc_text += '<h4 class="closed_list_caption">Closed:</h4>';
-		desc_text += '<ul class="unindented_ul">';
-		closed_this_year.forEach(function(rec) {
-			desc_text += make_li(rec.milestone, "milestone_closed");
-		});
-		desc_text += '</ul>';
-	}
-	*/
-	
 	if (closed_this_year.length !== 0) {
 		desc_text += '<h4 class="closed_list_caption">Closed:</h4>';
 		desc_text += makeTable(closed_this_year, "milestone", "milestone_closed");
 	}
-	
-	/*
-	if (legislative_this_year.length !== 0) {
-		desc_text += '<h4 class="legislative_list_caption">Legislative events:</h4>';
-		desc_text += '<ul class="unindented_ul">';
-		legislative_this_year.forEach(function(rec) {
-			desc_text += make_li(rec.milestone, "milestone_legislative");
-		});
-		desc_text += '</ul>';
-	}
-	*/
-	
 	if (legislative_this_year.length !== 0) {
 		desc_text += '<h4 class="legislative_list_caption">Legislative events:</h4>';
 		desc_text += makeTable(legislative_this_year, "milestone", "milestone_legislative");
 	}
 	
 	
-	
-	
 	// Fourth: Collect all web resources for the current year
 	var resources = _.filter(timeline_links, function(rec) { return rec.year === current_year; });
 	// There can dupes; remove any/all of these
 	resources = _.uniqWith(resources, _.isEqual);
+	
+	/*
 	if (resources.length !== 0) {
 		desc_text += '<h4 class="resources_list_caption">Web resources:</h4>';
 		desc_text += '<ul class="unindented_ul">';
@@ -268,21 +252,15 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		});
 		desc_text += '</ul>';
 	}
+	*/
+	
+	if (resources.length !== 0) {
+		desc_text += '<h4 class="resources_list_caption">Web resources:</h4>';
+		desc_text += makeTableWithLinks(resources, "url", "txt", "resource_item");
+	}
 	
 	// Fifth: Collect all "historical facts" for the current year
 	var historical = _.filter(historical_data, function(rec) { return rec.year === current_year; });
-	
-	/*
-	if (historical.length !== 0) {
-		desc_text += '<h4 class="historical_list_caption">This year in history:</h4>';
-		desc_text += '<ul class="unindented_ul">';
-		historical.forEach(function(rec) { 
-			desc_text += make_li(rec.text, "historical_item");
-		});
-		desc_text += '</ul>';
-	}
-	*/
-	
 	if (historical.length !== 0) {
 		desc_text += '<h4 class="historical_list_caption">This year in history:</h4>';
 		desc_text += makeTable(historical, "text", "historical_item");
