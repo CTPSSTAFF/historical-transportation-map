@@ -111,6 +111,7 @@ ul.unindented_ul {
 	color: black;
 	font-size: 18px;
 	font-weight: bold;
+	margin-bottom: 0px;
 }
 .milestone_opened {
 	color: black;
@@ -122,6 +123,7 @@ ul.unindented_ul {
 	color: #009cdc;
 	font-size: 18px;
 	font-weight: bold;
+	margin-bottom: 0px;
 }
 .milestone_reopened {
 	color: #009cdc;
@@ -133,6 +135,7 @@ ul.unindented_ul {
 	color: #ef3e42;
 	font-size: 18px;
 	font-weight: bold;
+	margin-bottom: 0px;
 }
 .milestone_closed {
 	color: #ef3e42;
@@ -144,6 +147,7 @@ ul.unindented_ul {
 	color: #009b67;
 	font-size: 18px;
 	font-weight: bold;
+	margin-bottom: 0px;
 }
 .milestone_legislative {
 	color: #009b67;
@@ -154,6 +158,7 @@ ul.unindented_ul {
 	color: black;
 	font-size: 18px;
 	font-weight: bold;
+	margin-bottom: 0px;
 }
 .resource_item {
 }
@@ -164,6 +169,7 @@ ul.unindented_ul {
 	color: black;
 	font-size: 18px;
 	font-weight: bold;
+	margin-bottom: 0px;
 }
 .historical_item {
 	color: gray;
