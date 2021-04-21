@@ -187,8 +187,9 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 		$(query_str).hide();
 	});
 	
-	// Second: Clear the output area
-	$('#output').html('');
+	// Second: Clear the variable parts of the output area
+	$('#output_year').html('');
+	$('#output_body').html('');
 	
 	// Third: Collect all milestones for the current year (there may be none)
 	//        and generate the descriptive text for this year's milestones.
@@ -240,8 +241,8 @@ function sliderHandler(values, handle, unencoded, tap, positions, noUiSlider) {
 	}
 
 	// Sixth: Render the whole shebang
-	var prefix = '<div class="year_header">' + current_year + '</div>';
-	$('#output').html(prefix + desc_text);
+	$('#output_year').html(current_year);
+	$('#output_body').html(desc_text);
 } // sliderHandler()
 
 var timerId = 0;
