@@ -97,17 +97,17 @@ will be helpful.)
 
 Ignoring the CTPS "branding" elements at the top of the page, the application page is organized as follows:
 1 outer_container
-  1.1 inner_container
-    1.1.1 svg_container- contains SVG map
-    1.1.2 inner_container_right - wraps "play/pause" button and noUiSlider control
-      1.1.2.1 button_div - contains "play/pause" button 
-      1.1.2.2. slider-vertical - contains noUiSlider control
+    1.1 inner_container
+        1.1.1 svg_container- contains SVG map
+        1.1.2 inner_container_right - wraps "play/pause" button and noUiSlider control
+            1.1.2.1 button_div - contains "play/pause" button 
+            1.1.2.2. slider-vertical - contains noUiSlider control
 2 output 
-  2.1 output_header - wraps display of current year and download button
-    2.1.1 output_year  - contains display of current year
-    2.1.2 download_button_div - contains download button
-  2.2 output_body
-    2.2.1 <table> containing text and links displayed for current year
+    2.1 output_header - wraps display of current year and download button
+        2.1.1 output_year  - contains display of current year
+        2.1.2 download_button_div - contains download button
+    2.2 output_body
+        2.2.1 <table> containing text and links displayed for current year
 
 ## Main UI Control
 The user interface of the application is controlled by a single [noUiSlider](https://refreshless.com/nouislider/) control.
