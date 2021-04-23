@@ -16,7 +16,7 @@ Moving to on-line, interactive delivery allows the informaiton presented to be u
 and for new "editions of the poster" to be published very quickly - all without incurring the costs
 associated with physical publication and delivery.
 
-### Data Sources
+## Data Sources
 The data sources for this application are:
 1. A "map" in the form of an SVG file that contains a uniquely-name SVG element for each element of physical infrastructure to be shown,
 and a small number of "background" map elements.
@@ -27,7 +27,7 @@ The intent here is to provide "teasers" to interesting content on the MPO websit
 4. A CSV file (historical_items.csv) that associates each year to text describing historical facts about the year, including notable transportation-related
 goings-on elsewhere in the country and the world.
 
-#### Schema of feature_timeline.csv
+### Schema of feature_timeline.csv
 | Column Name     | Contents |
 | --------------- | -------- |
 | layer name | HTML "id" of associated SVG element |
@@ -37,7 +37,7 @@ goings-on elsewhere in the country and the world.
 | type | Encoding of infrastructure type (see below) |
 | reopening | 'y' if start_year is the year in which a previously closed facility was reopened, otherwise blank |
 
-##### Encoding of the __type__ field
+#### Encoding of the __type__ field
 | Coded Value     | Meaning |
 | --------------- | -------- |
 | a  | aeronautical facility |
@@ -51,7 +51,7 @@ goings-on elsewhere in the country and the world.
 
 Note: The _type_ field is currently unused in the application.
 
-#### Schema of timeline_links.csv
+### Schema of timeline_links.csv
 | Column Name     | Contents |
 | --------------- | -------- |
 | year | Year for which to display link |
@@ -60,13 +60,13 @@ Note: The _type_ field is currently unused in the application.
 | link | URL for web resource |
 | location | "Location" of web resource: Boston MPO website or external |
 
-#### Schema of historical_items.csv
+### Schema of historical_items.csv
 | Column Name     | Contents |
 | --------------- | -------- |
 | year | Year for which text should be displayed |
 | text | Text to be displayed |
 
-#### Generation of HTML "index" Page for the App
+### Generation of HTML "index" Page for the App
 The HTML page for the application _contains_ the SVG "map" described above,
 under data source #1. This SVG file was created by Ken Dumas. Because the
 contents of this map varied during the course of development - and will vary
@@ -88,15 +88,26 @@ is a simple-minded, quick-and-dirty spiritual descendant of the #include
 mechanism supported by the ANSI C preprocessor. 
 The code for the preprocessor is found in the file __python/html_preprocessor.py__.
 
-### UI Organization
+## UI Organization
 The user interface for the application is a hierarchical structure of HTML <div> elements.
 CSS styling rules, using [Flexible Box Module](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) 
 (a.k.a. "flexbox") directives, are used to organize the layout of the <divs> on the screen.
 (For readers unfamiliar with the __flexbox__ model, this [Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 will be helpful.)
 
-Ignoring the CTPS "branding" elements at the top of the page, the application page is organized as organized as follows:
+Ignoring the CTPS "branding" elements at the top of the page, the application page is organized as follows:
 __TO BE CONTINUED__.
 
-### Main UI Control
-The user interface of the application is controlled by a single component: 
+## Main UI Control
+The user interface of the application is controlled by a single [noUiSlider](https://refreshless.com/nouislider/) control.
+All the logic for the application is contained in the JavaScript (JS) source file __js/historical_map.js__.
+The noUiSlider control is configured and initialzed in the JS function _initialize_.
+Aside from initialization work, the on-change event-handler for the noUiSlider control, _sliderHandler_, 
+handles the lion's share of the "work" done by the application.
+
+## External Dependencies
+The application depends upon the following external JavaScript libraries:
+1. d3.js version 6.3.1 - used for reading/parsing of CSV files
+2. jQuery.js version 1.12.4 - supports DOM manipulation
+3. lodash.js version 4.17.15 - provides functional programming utilities
+4. noUiSlider version 14.6.3 - main UI control
