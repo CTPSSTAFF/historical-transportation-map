@@ -109,6 +109,7 @@ Ignoring the CTPS "branding" elements at the top of the page, the application pa
     * (2.2.) output_body
         * (2.2.1) <table> containing text and links displayed for current year
 
+
 ## Main UI Control
 The user interface of the application is controlled by a single [noUiSlider](https://refreshless.com/nouislider/) control.
 All the logic for the application is contained in the JavaScript (JS) source file __js/historical_map.js__.
