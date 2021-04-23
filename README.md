@@ -88,6 +88,20 @@ is a simple-minded, quick-and-dirty spiritual descendant of the #include
 mechanism supported by the ANSI C preprocessor. 
 The code for the preprocessor is found in the file __python/html_preprocessor.py__.
 
+## Main UI Control
+The user interface of the application is controlled by a single [noUiSlider](https://refreshless.com/nouislider/) control.
+All the logic for the application is contained in the JavaScript (JS) source file __js/historical_map.js__.
+The noUiSlider control is configured and initialzed in the JS function _initialize_.
+Aside from initialization work, the on-change event-handler for the noUiSlider control, _sliderHandler_, 
+handles the lion's share of the "work" done by the application.
+
+## External Dependencies
+The application depends upon the following external JavaScript libraries:
+1. d3.js version 6.3.1 - used for reading/parsing of CSV files
+2. jQuery.js version 1.12.4 - supports DOM manipulation
+3. lodash.js version 4.17.15 - provides functional programming utilities
+4. noUiSlider version 14.6.3 - main UI control
+
 ## UI Organization
 The user interface for the application is a hierarchical structure of HTML <div> elements.
 CSS styling rules, using [Flexible Box Module](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) 
@@ -108,17 +122,3 @@ Ignoring the CTPS "branding" elements at the top of the page, the application pa
         * (2-1-2) download_button_div - contains download button
     * (2-2) output_body
         * (2-2-1) <table> containing text and links displayed for current year   
-
-## Main UI Control
-The user interface of the application is controlled by a single [noUiSlider](https://refreshless.com/nouislider/) control.
-All the logic for the application is contained in the JavaScript (JS) source file __js/historical_map.js__.
-The noUiSlider control is configured and initialzed in the JS function _initialize_.
-Aside from initialization work, the on-change event-handler for the noUiSlider control, _sliderHandler_, 
-handles the lion's share of the "work" done by the application.
-
-## External Dependencies
-The application depends upon the following external JavaScript libraries:
-1. d3.js version 6.3.1 - used for reading/parsing of CSV files
-2. jQuery.js version 1.12.4 - supports DOM manipulation
-3. lodash.js version 4.17.15 - provides functional programming utilities
-4. noUiSlider version 14.6.3 - main UI control
