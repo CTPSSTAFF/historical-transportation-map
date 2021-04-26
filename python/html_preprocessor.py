@@ -56,7 +56,16 @@ def preprocess_html(in_html_template_fn, out_html_fn):
 in_html_template = home_dir + 'html/index_with_inset_template.html'
 out_html = home_dir + 'index.html'
 preprocess_html(in_html_template, out_html)
+# Generate the "index_without_inset.hmtl" file that doesn't have the SVG inset map:
+in_html_template = home_dir + 'html/index_without_inset_template.html'
+out_html = home_dir + 'index_without_inset.html'
+preprocess_html(in_html_template, out_html)
 # Generate the "map.html" file that includes the SVG inset map:
 in_html_template = home_dir + 'html/map_with_inset_template.html'
 out_html = home_dir + 'map.html'
 preprocess_html(in_html_template, out_html)
+# Generate the "map_without_inset.html" file that doesn't have the SVG inset map:
+in_html_template = home_dir + 'html/map_without_inset_template.html'
+out_html = home_dir + 'map_without_inset.html'
+preprocess_html(in_html_template, out_html)
+
