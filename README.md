@@ -103,7 +103,7 @@ The application depends upon the following external JavaScript libraries:
 4. noUiSlider version 14.6.3 - main UI control
 
 ## UI Organization
-The user interface for the application is a hierarchical structure of HTML <div> elements.
+The user interface for the application is a hierarchical structure of HTML \<div\> elements.
 CSS styling rules, using [Flexible Box Module](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) 
 (a.k.a. "flexbox") directives, are used to organize the layout of the <divs> on the screen.
 (For readers unfamiliar with the __flexbox__ model, this [Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
