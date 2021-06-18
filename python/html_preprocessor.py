@@ -1,15 +1,18 @@
 # Python script implementing a simple-minded pre-processor for HTML.
-# The pre-processor supports one directive, which must be within a one-line HTML comment:
+# The pre-processor supports one directive, which must be within a one-line HTML comment,
+# the syntax of which, expressed in BNF form, is:
 #	  include(<file_name>)
 #
 # The pre-processor copies all input to the output, except when it encounters an "include"
 # directive. At that point the contents of the included file are written to the output before
 # resuming reading-writing of the remaining lines in the input HTML file.
+# The essential functionality mimics a subset of the #include functionality of ANSI Standard C.
+# Had an ANSI-compliant C compiler been available "at hand", it would have been used instead.
 #
 # The intended use is to allow the SVG "map" produced by Ken Dumas to be incorporated into
 # the index.html page for the "historical transportaiton map" application automatically.
 #
-# -- B. Krepp 2/1/2021
+# -- B. Krepp 2/1/2021, 5/27/2021
 
 # Function: preprocess_html
 # Parameters:
