@@ -133,17 +133,12 @@ The __outer_container__ div is organized as follows:
 -->
 
 The __output__ div is organized as follows:
-<ul>
-	<li> (2-1) output_header - wraps display of current year and download button </li>
-		<ul>
-			<li> (2-1-1) output_year  - contains display of current year </li>
-			<li>(2-1-2) download_button_div - contains download button</li>
-		</ul>
-	<li> (2-2) output_body </li>
-		<ul>
-			<li> (2-2-1) <table> containing text and links displayed for current year </li>
-		</ul>
-</ul>
+* (2-1) output_header - wraps display of current year and download button
+	* (2-1-1) output_year  - contains display of current year
+			* (2-1-2) download_button_div - contains download button
+* (2-2) output_body
+	* (2-2-1) <table> containing text and links displayed for current year  
+
 
 ## Deployment
 To deploy the application, all that is required is to copy the following files and directories to the
