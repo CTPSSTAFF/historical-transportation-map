@@ -114,23 +114,13 @@ Ignoring the CTPS "branding" elements at the top of the page, the application pa
 * (2) __output__ div
 
 The __outer_container__ div is organized as follows:
-<!--
-<ul>
-<li> (1-1) inner_container </li>
-	<ul>
-		<li> (1-1-1) svg_container- contains SVG map </li>
-		<li>
-			<ul>
-				<li> (1-1-2) inner_container_right - wraps "play/pause" button and noUiSlider control </li>
-					<ul>
-						<li>(1-1-2-1) button_div - contains "play/pause" button  </li>
-						<li>(1-1-2-2) slider-vertical - contains noUiSlider control </li>
-					</ul>
-				</li>
-			</ul>
-		</li>
-	<ul>
--->
+* (1-1) inner_container
+	* (1-1-1) svg_container- contains SVG map
+		* (1-1-2) inner_container_right - wraps "play/pause" button and noUiSlider control
+			* (1-1-2-1) button_div - contains "play/pause" button
+			* (1-1-2-2) slider-vertical - contains noUiSlider control
+
+
 
 The __output__ div is organized as follows:
 * (2-1) output_header - wraps display of current year and download button
