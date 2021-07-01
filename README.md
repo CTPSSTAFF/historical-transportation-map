@@ -114,6 +114,7 @@ Ignoring the CTPS "branding" elements at the top of the page, the application pa
 * (2) __output__ div
 
 The __outer_container__ div is organized as follows:
+<!--
 <ul>
 <li> (1-1) inner_container </li>
 	<ul>
@@ -129,6 +130,7 @@ The __outer_container__ div is organized as follows:
 			</ul>
 		</li>
 	<ul>
+-->
 
 The __output__ div is organized as follows:
 <ul>
