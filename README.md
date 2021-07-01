@@ -125,8 +125,8 @@ The __output__ div is organized as follows:
 	* (2-1-1) output_year  - contains display of current year
 	* (2-1-2) download_button_div - contains download button
 * (2-2) output_body
-	* (2-2-1) <table> containing text and links displayed for current year
-		
+	* (2-2-1) <table> containing text and links displayed for current year  
+
 ## Deployment
 To deploy the application, all that is required is to copy the following files and directories to the
 folder specified by your system administrator as the "root" directory for this application:
