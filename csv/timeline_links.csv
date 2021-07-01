@@ -36,7 +36,7 @@ year,type,text,link,location
 1845,Website,Fitchburg Commuter Rail,https://www.mbta.com/schedules/CR-Fitchburg/line,External
 1845,Website,Old Colony Railroad-Plymouth,https://www.mbta.com/schedules/CR-Kingston/line,External
 1845,Website,Haverhill Commuter Rail,https://www.mbta.com/schedules/CR-Haverhill/line,External
-1846,Website,Old Colony Railroad-Middleborough,https://www.mbta.com/schedules/CR-Middleborough/line,External
+1845,Website,Old Colony Railroad-Middleborough,https://www.mbta.com/schedules/CR-Middleborough/line,External
 1846,Website,About the Lexington Branch,http://www.bedforddepot.org/history/index.html,External
 1847,Website,Rockport Commuter Rail,https://www.mbta.com/schedules/CR-Newburyport/line,External
 1848,Website,The Milford Branch,https://www.abandonedrails.com/milford-branch,External
@@ -58,8 +58,9 @@ year,type,text,link,location
 1873,Website,Lexington & West Cambridge Railroad ,https://www.abandonedrails.com/lexington-branch,External
 1881,Website,The Central Massachusetts Railroad,https://www.abandonedrails.com/wayland-and-sudbury-branch-railroad,External
 1881,Website,Central Massachusetts Railroad,http://westonhistory.org/weston-history/topics/central-massachusetts-railroad,External
-1888,Website,Stoughton Commuter Rail,https://www.mbta.com/schedules/CR-Providence/line,External
+1845,Website,Stoughton Commuter Rail,https://www.mbta.com/schedules/CR-Providence/line,External
 1889,Website,First Electric Streetcar,https://www.mbta.com/history,External
+1889,Website,A Branch,http://www.bostonstreetcars.com/what-happened-to-the-a-line.html,External
 1889,Website,B Branch,http://www.bostonstreetcars.com/b-branch.html,External
 1889,Website,C Branch,http://www.bostonstreetcars.com/c-branch.html,External
 1894,Website,Massachusetts Highway Commission,https://www.mass.gov/orgs/highway-division,External
@@ -86,7 +87,7 @@ year,type,text,link,location
 1901,Website,Dudley Square Station,http://www.bostonstreetcars.com/dudley-square.html,External
 1901,Website,Sullivan Station,http://www.bostonstreetcars.com/sullivan-square.html,External
 1904,Website,MBTA Blue Line,https://www.mbta.com/schedules/Blue/line,External
-1906,Website,Needham Commuter Rail,https://www.mbta.com/schedules/CR-Needham/line,External
+1861,Website,Needham Commuter Rail,https://www.mbta.com/schedules/CR-Needham/line,External
 1909,Website,MBTA Orange Line,https://www.mbta.com/schedules/Orange/line,External
 1909,Website,Elevated Orange Line,http://www.bostonstreetcars.com/orange-line.html,External
 1912,Website,MBTA Green Line,https://www.mbta.com/schedules/Green,External
