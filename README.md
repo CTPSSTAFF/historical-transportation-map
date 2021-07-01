@@ -122,3 +122,15 @@ Ignoring the CTPS "branding" elements at the top of the page, the application pa
         * (2-1-2) download_button_div - contains download button
     * (2-2) output_body
         * (2-2-1) <table> containing text and links displayed for current year   
+		
+## Deployment
+To deploy the application, all that is required is to copy the following files and directories to the
+folder specified by your system administrator as the "root" directory for this application:
+* index.html (file)
+* css (folder)
+* csv (folder)
+* img (folder)
+* js (folder)
+* libs (folder)
+* pdf (folder)
+* pdf (folder)
