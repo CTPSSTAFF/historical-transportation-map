@@ -143,6 +143,7 @@ The __output__ div is organized as follows:
 		<ul>
 			<li> (2-2-1) <table> containing text and links displayed for current year </li>
 		</ul>
+</ul>
 
 ## Deployment
 To deploy the application, all that is required is to copy the following files and directories to the
