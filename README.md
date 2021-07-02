@@ -114,6 +114,29 @@ The application depends upon the following external JavaScript libraries:
 3. lodash.js version 4.17.15 - provides functional programming utilities
 4. noUiSlider version 14.6.3 - main UI control
 
+## Building the Application
+The steps to build the application are as follows:
+* Obtain SVG, PDF, and XLSX files from Ken Dumas.
+* Rename SVG, PDF, XLSX files to replace blanks with underscores.
+* Check the renamed files into the Git repository for the project.
+* Export XLSX files to CSV format.
+* Check the CSV files into the Git repository for the project.
+* Run the HTML preprocessor __python/html_preprocesor.py__ to generate a new version of __index.html__ based on new SVG file.
+* Check the new version of __index.html__ into the Git repository for the project.
+
+## Deployment of the Application
+To deploy the application, all that is required is to "pull" the latest version of the Git repository for the application
+into a staging area on a CTPS internal server (typically _appsrvr3_), and copy the following files and directories from it
+to the folder specified by your system administrator as the "root" directory for this application:
+* index.html (file)
+* css (folder)
+* csv (folder)
+* img (folder)
+* js (folder)
+* libs (folder)
+* pdf (folder)
+* pdf (folder)
+
 ## UI Organization
 The user interface for the application is a hierarchical structure of HTML \<div\> elements.
 CSS styling rules, using [Flexible Box Module](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) 
