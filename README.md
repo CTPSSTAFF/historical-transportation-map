@@ -88,18 +88,6 @@ is a simple-minded, quick-and-dirty spiritual descendant of the #include
 mechanism supported by the ANSI C preprocessor. 
 The code for the preprocessor is found in the file __python/html_preprocessor.py__.
 
-## Deployment of the Application
-To deploy the application, all that is required is to copy the following files and directories to the
-folder specified by your system administrator as the "root" directory for this application:
-* index.html (file)
-* css (folder)
-* csv (folder)
-* img (folder)
-* js (folder)
-* libs (folder)
-* pdf (folder)
-* pdf (folder)
-
 ### Main UI Control
 The user interface of the application is controlled by a single [noUiSlider](https://refreshless.com/nouislider/) control.
 All the logic for the application is contained in the JavaScript (JS) source file __js/historical_map.js__.
