@@ -30,7 +30,7 @@
 
 // Symbolic constants - first and last years for which we have data
 var FIRST_YEAR = 1800,
-    LAST_YEAR = 2021;
+    LAST_YEAR = 2022;
 	
 // The UI element controlling the app:
 var verticalSlider = document.getElementById('slider-vertical');
@@ -303,7 +303,7 @@ function initialize() {
 		orientation: 'vertical',
 		range: {
 			'min': 1800,
-			'max': 2021
+			'max': 2022
 		},
 		step: 1,
 		keyboardSupport: true,
